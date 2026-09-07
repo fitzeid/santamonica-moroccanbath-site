@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MOROCCAN BATH @ Santa Monica KW</title>
+<meta name="description" content="Royal Moroccan Hammam at Santa Monica Salon, Kuwait. The full traditional hammam experience — 1 hour, 15 KD. Book now.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000;
+    --white:#fff;
+    --smoke:rgba(255,255,255,.62);
+    --line:rgba(255,255,255,.24);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Manrope',sans-serif;
+    background:var(--black);
+    color:var(--white);
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .hero{position:fixed;inset:0;overflow:hidden}
+  .hero video{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity 1.4s ease;
+  }
+  .hero video.on{opacity:1}
+  .veil{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,.66) 0%, rgba(0,0,0,.10) 32%, rgba(0,0,0,.14) 52%, rgba(0,0,0,.88) 100%);
+    pointer-events:none;
+  }
+
+  .ui{
+    position:fixed;inset:0;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:space-between;
+    text-align:center;
+    padding:calc(env(safe-area-inset-top) + 22px) 22px calc(env(safe-area-inset-bottom) + 20px);
+  }
+
+  .top{display:flex;flex-direction:column;align-items:center;gap:10px;animation:fade 1s .15s ease both}
+  .top img{width:54px;height:auto}
+  .top h1{
+    font-family:'Marcellus',serif;
+    font-weight:400;font-size:.92rem;
+    letter-spacing:.46em;text-indent:.46em;
+    text-transform:uppercase;
+  }
+
+  .foot{width:100%;max-width:360px;display:flex;flex-direction:column;gap:14px;animation:fade 1s .45s ease both;margin-bottom:46px}
+  .service{
+    font-family:'Marcellus',serif;
+    font-size:clamp(1.7rem,8vw,2.3rem);
+    font-weight:400;line-height:1.1;
+    text-transform:uppercase;
+  }
+  .service .at{
+    display:block;
+    font-size:.44em;
+    text-transform:none;
+    letter-spacing:.06em;
+    margin-top:2px;
+  }
+  .service-sub{
+    font-size:.72rem;font-weight:300;
+    letter-spacing:.3em;text-indent:.3em;
+    text-transform:uppercase;color:var(--smoke);
+    margin-bottom:8px;
+  }
+
+  .opt{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;
+    padding:17px 20px;
+    text-decoration:none;
+    transition:transform .15s ease, opacity .2s ease;
+  }
+  .opt:active{transform:scale(.98)}
+  .opt:focus-visible{outline:2px solid var(--white);outline-offset:3px}
+  .opt .l{text-align:start}
+  .opt .name{font-size:.94rem;font-weight:600;letter-spacing:.04em}
+  .opt .note{font-size:.72rem;font-weight:300;margin-top:2px}
+  .opt .price{font-family:'Marcellus',serif;font-size:1.5rem;white-space:nowrap}
+  .opt .price small{font-size:.6em;font-family:'Manrope',sans-serif;font-weight:400}
+
+  .opt.single{
+    border:1px solid var(--line);
+    color:var(--white);
+    background:rgba(0,0,0,.3);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+  }
+  .opt.single .note{color:var(--smoke)}
+
+  .opt.pack{
+    background:var(--white);
+    color:var(--black);
+    position:relative;
+  }
+  .opt.pack .note{color:rgba(0,0,0,.6)}
+  .save{
+    position:absolute;
+    top:-11px;inset-inline-end:14px;
+    background:var(--black);
+    color:var(--white);
+    border:1px solid var(--white);
+    font-size:.6rem;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;
+    padding:4px 10px;border-radius:100px;
+  }
+
+  .wa{
+    position:fixed;
+    right:16px;
+    bottom:calc(env(safe-area-inset-bottom) + 16px);
+    display:flex;align-items:center;gap:8px;
+    padding:10px 15px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:100px;
+    background:rgba(0,0,0,.4);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    color:var(--white);
+    text-decoration:none;
+    font-size:.64rem;font-weight:400;
+    letter-spacing:.16em;text-transform:uppercase;
+    z-index:5;
+    animation:fade 1s .8s ease both;
+  }
+  .wa:active{opacity:.8}
+  .wa svg{width:14px;height:14px;flex:none}
+
+  .cities{
+    margin-top:4px;
+    font-size:.6rem;font-weight:300;
+    letter-spacing:.44em;text-indent:.44em;
+    text-transform:uppercase;color:var(--smoke);
+  }
+
+  .social{
+    display:flex;gap:10px;justify-content:center;
+    margin-top:10px;
+  }
+  .social a{
+    width:38px;height:38px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.3);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--white);
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    transition:opacity .2s ease, transform .15s ease;
+  }
+  .social a:active{transform:scale(.94);opacity:.8}
+  .social svg{width:16px;height:16px;fill:currentColor}
+
+  .lang{
+    position:fixed;
+    left:16px;
+    top:calc(env(safe-area-inset-top) + 16px);
+    z-index:6;
+    animation:fade 1s .8s ease both;
+  }
+  .lang-btn{
+    display:flex;align-items:center;gap:7px;
+    padding:9px 14px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:100px;
+    background:rgba(0,0,0,.4);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    color:var(--white);
+    font-family:'Manrope','Tajawal',sans-serif;
+    font-size:.74rem;font-weight:500;
+    cursor:pointer;
+  }
+  .lang-btn:active{opacity:.8}
+  .lang-btn .chev{font-size:.55rem;opacity:.7;transition:transform .2s ease}
+  .lang.open .lang-btn .chev{transform:rotate(180deg)}
+  .lang-menu{
+    position:absolute;left:0;top:calc(100% + 8px);
+    min-width:100%;
+    display:none;flex-direction:column;
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:14px;overflow:hidden;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+  }
+  .lang.open .lang-menu{display:flex}
+  .lang-menu button{
+    padding:11px 16px;
+    background:none;border:none;
+    color:var(--white);
+    font-family:'Manrope','Tajawal',sans-serif;
+    font-size:.8rem;font-weight:500;
+    text-align:start;cursor:pointer;white-space:nowrap;
+  }
+  .lang-menu button:hover,.lang-menu button:focus-visible{background:rgba(255,255,255,.12)}
+  .lang-menu button[aria-selected="true"]{opacity:.55}
+
+  /* Arabic typography & direction fixes */
+  html[lang="ar"] body{font-family:'Tajawal',sans-serif}
+  html[lang="ar"] .top h1,
+  html[lang="ar"] .service,
+  html[lang="ar"] .price{font-family:'Tajawal',sans-serif;font-weight:500}
+  html[lang="ar"] .top h1,
+  html[lang="ar"] .service-sub,
+  html[lang="ar"] .cities,
+  html[lang="ar"] .save,
+  html[lang="ar"] .wa{letter-spacing:0;text-indent:0}
+
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .top,.foot,.wa{animation:none}
+    .hero video{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero" aria-hidden="true">
+  <video id="heroVid" src="/media/bath.mp4" muted loop playsinline preload="auto"></video>
+  <div class="veil"></div>
+</div>
+
+<div class="lang" id="lang">
+  <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+    <span id="langLabel">العربية</span><span class="chev" aria-hidden="true">▾</span>
+  </button>
+  <div class="lang-menu" id="langMenu" role="listbox" aria-label="Language">
+    <button role="option" data-lang="en" lang="en">English</button>
+    <button role="option" data-lang="ar" lang="ar">العربية</button>
+  </div>
+</div>
+
+<main class="ui">
+  <header class="top">
+    <img src="/logo-white.png" alt="Santa Monica rose logo">
+    <h1 data-i18n="title">Santa Monica KW</h1>
+  </header>
+
+  <div class="foot">
+    <div>
+      <p class="service"><span data-i18n="service">Moroccan Bath</span><span class="at" data-i18n="serviceAt">@ Santa Monica</span></p>
+      <p class="service-sub" data-i18n="sub">Steam · Scrub · Full-body glow</p>
+    </div>
+
+    <a class="opt pack" href="https://www.fresha.com/book-now/santa-monica-bjymtvr1/services?lid=2974684&amp;oiid=sv%3A27496241&amp;share=true&amp;pId=2864340" target="_blank" rel="noopener">
+      <span class="l">
+        <span class="name" data-i18n="singleName">Royal Moroccan Hammam</span><br>
+        <span class="note" data-i18n="singleNote">1 hour · full traditional ritual</span>
+      </span>
+      <span class="price" data-i18n="singlePrice">15 KD</span>
+    </a>
+
+    <p class="cities" data-i18n="cities">Kuwait · Dubai</p>
+
+    <div class="social">
+      <a href="https://www.instagram.com/santamonicasalon.kw" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2m0-2.2C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.15A3.99 3.99 0 1 1 16 12a3.99 3.99 0 0 1-4 3.99z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@santamonicaspa.kw" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<a class="wa" href="https://wa.me/965XXXXXXXX?text=Hi%20Santa%20Monica!" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 004.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2 1.38-.51.05-1.16.07-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.08 0-1.47.77-2.19 1.04-2.49.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.07.92 2.22.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.18.3.79 1.3 1.69 2.11 1.16 1.03 2.14 1.35 2.44 1.5.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.74.82 2.04.97.3.15.5.22.57.35.08.13.08.73-.17 1.43z"/></svg>
+  <span data-i18n="wa">Contact us</span>
+</a>
+
+<script>
+(function(){
+  var v = document.getElementById('heroVid');
+  function start(){
+    var p = v.play();
+    if (p && p.catch) p.catch(function(){});
+    v.classList.add('on');
+  }
+  if (v.readyState >= 3) start();
+  else v.addEventListener('canplay', start, {once:true});
+  document.addEventListener('touchstart', function t(){
+    v.play().catch(function(){});
+    document.removeEventListener('touchstart', t);
+  }, {once:true});
+})();
+
+(function(){
+  var I18N = {
+    en: {
+      docTitle: "MOROCCAN BATH @ Santa Monica KW",
+      title: "Santa Monica KW",
+      service: "Moroccan Bath",
+      serviceAt: "@ Santa Monica",
+      sub: "Steam · Scrub · Full-body glow",
+      singleName: "Royal Moroccan Hammam",
+      singleNote: "1 hour · full traditional ritual",
+      singlePrice: "15 KD",
+      cities: "Kuwait · Dubai",
+      wa: "Contact us"
+    },
+    ar: {
+      docTitle: "الحمام المغربي @ سانتا مونيكا الكويت",
+      title: "سانتا مونيكا الكويت",
+      service: "الحمام المغربي",
+      serviceAt: "@ سانتا مونيكا",
+      sub: "بخار · تقشير · توهّج كامل للجسم",
+      singleName: "حمّام مغربي فاخر",
+      singleNote: "ساعة وحدة · الطقس التقليدي الكامل",
+      singlePrice: "١٥ د.ك",
+      cities: "الكويت · دبي",
+      wa: "تواصلي معنا"
+    }
+  };
+
+  var wrap = document.getElementById('lang');
+  var btn = document.getElementById('langBtn');
+  var label = document.getElementById('langLabel');
+  var menu = document.getElementById('langMenu');
+  var options = menu.querySelectorAll('button[data-lang]');
+
+  function setLang(l){
+    var t = I18N[l] || I18N.en;
+    document.documentElement.lang = l;
+    document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+    document.title = t.docTitle;
+    var els = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < els.length; i++){
+      var key = els[i].getAttribute('data-i18n');
+      if (t[key] !== undefined) els[i].textContent = t[key];
+    }
+    label.textContent = (l === 'ar') ? 'English' : 'العربية';
+    label.setAttribute('lang', (l === 'ar') ? 'en' : 'ar');
+    for (var j = 0; j < options.length; j++){
+      options[j].setAttribute('aria-selected', options[j].getAttribute('data-lang') === l ? 'true' : 'false');
+    }
+    try { localStorage.setItem('smk-lang', l); } catch(e){}
+  }
+
+  function closeMenu(){
+    wrap.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = wrap.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  for (var k = 0; k < options.length; k++){
+    options[k].addEventListener('click', function(){
+      setLang(this.getAttribute('data-lang'));
+      closeMenu();
+    });
+  }
+  document.addEventListener('click', closeMenu);
+
+  var saved = null;
+  try { saved = localStorage.getItem('smk-lang'); } catch(e){}
+  setLang(saved === 'ar' ? 'ar' : 'en');
+})();
+</script>
+
+</body>
+</html>
