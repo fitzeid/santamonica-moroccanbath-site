@@ -30,8 +30,7 @@
     position:absolute;inset:0;
     width:100%;height:100%;
     object-fit:cover;
-    opacity:0;
-    transition:opacity 1.4s ease;
+    opacity:1;
   }
   .hero video.on{opacity:1}
   .veil{
@@ -243,7 +242,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <body>
 
 <div class="hero" aria-hidden="true">
-  <video id="heroVid" src="/media/bath.mp4" muted loop playsinline preload="auto"></video>
+  <video id="heroVid" src="/media/bath.mp4" autoplay muted loop playsinline preload="auto"></video>
   <div class="veil"></div>
 </div>
 
